@@ -41,7 +41,8 @@ public class MessageResource {
 		}
 		return messageServivce.getAllmessages();
 	}
-	
+	//When a resource is created via POST, the server should respond with 
+	//201 Created and a Location header pointing to the new resource.
 	@POST 
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
@@ -75,8 +76,7 @@ public class MessageResource {
 	@GET
 	@Path("/{messageId}")
 	public Message getMessage(@PathParam("messageId")long id) {
-		
-		return MessageService.getMessage(id);
+		return messageServivce.getMessage(id);
 	}
 	
 	@Path("/{messageId}/comments")

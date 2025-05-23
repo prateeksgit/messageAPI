@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.pratik.RESTAPI.messenger.database.DatabaseClass;
+import org.pratik.RESTAPI.messenger.exception.DataNotFoundException;
 import org.pratik.RESTAPI.messenger.model.Message;
 
 public class MessageService {
@@ -46,8 +47,12 @@ public class MessageService {
 	}
 	
 	
-	public static Message getMessage(long id) {
-		return messages.get(id);
+	public Message getMessage(long id) {
+		Message message= messages.get(id);
+		if(message==null) {
+			throw new DataNotFoundException("Message with id "+id+" not found");
+		}
+		return message;
 	}
 	
 	public Message addMessage(Message message) {
